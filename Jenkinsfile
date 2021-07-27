@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    imagename = "steven8519/userapp"
+    imagename = "steven8519/user-service"
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
@@ -9,10 +9,35 @@ pipeline {
   stages {
     stage('Chechout') {
       steps {
-        git([url: 'https://github.com/Steven8519/devhub-developers-social.git', branch: 'master', credentialsId: 'github'])
+        git([url: 'https://github.com/Steven8519/DeveloperSocial.git', branch: 'master', credentialsId: 'github'])
 
       }
     }
+
+    stage('Maven Build') {
+        teps{
+           script {
+              sh " mvn clean install -P prod -X"
+            }
+        }
+    }
+
+    stage('Maven Test') {
+        teps{
+           script {
+             sh " mvn clean install -P prod -X"
+            }
+         }
+    }
+
+    stage('Building image') {
+          steps{
+            script {
+              dockerImage = docker.build imagename
+          }
+       }
+    }
+
     stage('Building image') {
       steps{
         script {
