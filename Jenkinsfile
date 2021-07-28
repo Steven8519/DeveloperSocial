@@ -51,11 +51,9 @@ pipeline {
 
     stage("Deploy To Kuberates Cluster") {
        steps {
-           kubernetesDeploy(
-             configs: 'manifest.yml',
-             kubeconfigId: 'k8s',
-             enableConfigSubstitution: true
-            )
+           withKubeConfig([credentialsId: 'k8s', serverUrl: 'https://api.useast2.dev.developersocialhub.net']) {
+                 sh 'kubectl apply -f manifest.yml'
+            }
         }
      }
 
