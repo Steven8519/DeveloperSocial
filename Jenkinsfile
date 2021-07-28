@@ -50,14 +50,10 @@ pipeline {
     }
 
     stage('Deploy to kubernetes') {
-          steps{
-            kubernetesDeploy(
-               configs: 'manifest.yaml',
-               kubeconfigId: 'k8s',
-               enableConfigSubstitution: true
-            )
-          }
-     }
+      steps{
+        sh 'kubectl apply -f manifest.yml --validate=false'
+      }
+    }
 
     stage('Remove Unused docker image') {
       steps{
