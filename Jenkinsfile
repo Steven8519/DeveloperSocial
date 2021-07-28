@@ -50,11 +50,13 @@ pipeline {
     }
 
     stage("Deploy To Kuberates Cluster") {
+       steps {
            kubernetesDeploy(
              configs: 'manifest.yml',
              kubeconfigId: 'k8s',
              enableConfigSubstitution: true
             )
+        }
      }
 
     stage('Remove Unused docker image') {
