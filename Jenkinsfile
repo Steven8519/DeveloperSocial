@@ -15,7 +15,7 @@ pipeline {
     }
 
     stage('Maven Build') {
-        teps{
+        steps{
            script {
               sh " mvn clean install -P prod -X"
             }
@@ -23,7 +23,7 @@ pipeline {
     }
 
     stage('Maven Test') {
-        teps{
+        steps{
            script {
              sh " mvn test"
             }
