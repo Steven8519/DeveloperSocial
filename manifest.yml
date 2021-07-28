@@ -17,7 +17,7 @@ spec:
         app: react-webapp
     spec:
       containers:
-        - image: steven8519/userapp:latest
+        - image: steven8519/user-service:latest
           name: webapp
           imagePullPolicy: Always
           resources: {}
