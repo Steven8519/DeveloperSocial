@@ -52,7 +52,7 @@ pipeline {
     stage('Deploy to kubernetes') {
           steps{
             kubernetesDeploy(
-               configs: 'springBootMongo.yml',
+               configs: 'manifest.yml',
                kubeconfigId: 'k8s',
                enableConfigSubstitution: true
             )
