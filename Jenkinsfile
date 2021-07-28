@@ -51,9 +51,7 @@ pipeline {
 
     stage("Deploy To Kuberates Cluster") {
        steps {
-           withKubeConfig([credentialsId: 'k8s', serverUrl: 'https://api.useast2.dev.developersocialhub.net']) {
-                 sh 'kubectl apply -f manifest.yml'
-            }
+           sh 'kubectl apply -f manifest.yml'
         }
      }
 
