@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: react-webapp
+  name: react-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-webapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: react-webapp
+    spec:
+      containers:
+        - image: steven8519/userapp:latest
+          name: webapp
+          imagePullPolicy: Always
+          resources: {}
+          ports:
+            - containerPort: 8080
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-webapp
+  labels:
+    run: react-webapp
+spec:
+  selector:
+    app: react-webapp
+
+  ports:
+    - name: http
+      port: 80
+      NodePort: 30080
