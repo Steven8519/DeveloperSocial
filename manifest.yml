@@ -16,6 +16,7 @@ metadata:
 spec:
   replicas: 1
   selector:
+
     app: springboot
   template:
     metadata:
